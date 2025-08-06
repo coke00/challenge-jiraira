@@ -1,4 +1,4 @@
-FROM openjdk:21-jre-slim
+FROM eclipse-temurin:21-jre
 
 LABEL maintainer="Challenge-Tenpo"
 LABEL description="API Spring Boot para challenge técnico"
