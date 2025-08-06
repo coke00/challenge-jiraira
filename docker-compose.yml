@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   # PostgreSQL Database
   postgres:
@@ -41,6 +39,7 @@ services:
   # Tenpo API Application
   tenpo-api:
     build: .
+    image: jorgeiraira/tenpo-api:latest
     container_name: tenpo-api
     environment:
       SPRING_PROFILES_ACTIVE: docker
