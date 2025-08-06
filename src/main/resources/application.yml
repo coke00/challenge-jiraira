@@ -1,0 +1,53 @@
+spring:
+  application:
+    name: challenge-jiraira
+  datasource:
+    url: jdbc:postgresql://localhost:5432/tenpo_db
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      timeout: 2000ms
+  cache:
+    type: redis
+    redis:
+      time-to-live: 1800000 # 30 minutes in milliseconds
+server:
+  port: 8080
+external:
+  percentage-service:
+    url: http://localhost:8081/percentage
+    timeout: 5000ms
+    retry:
+      max-attempts: 3
+      delay: 1000ms
+rate-limit:
+  requests-per-minute: 3
+
+logging:
+  level:
+    cl.jiraira: DEBUG
+    org.springframework.cache: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+
+# Actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always

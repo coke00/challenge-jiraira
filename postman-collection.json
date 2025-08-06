@@ -1,0 +1,129 @@
+{
+  "info": {
+    "name": "Tenpo Challenge API",
+    "description": "Colección de endpoints para testing de la API REST Spring Boot",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "version": "1.0.0"
+  },
+  "item": [
+    {
+      "name": "Cálculo con Porcentaje",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"num1\": 5.0,\n  \"num2\": 5.0\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/calculations/calculate",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "calculations", "calculate"]
+        }
+      }
+    },
+    {
+      "name": "Health Check - Cálculo",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/calculations/health",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "calculations", "health"]
+        }
+      }
+    },
+    {
+      "name": "Historial de Llamadas",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/history?page=0&size=10",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "history"],
+          "query": [
+            {"key": "page", "value": "0"},
+            {"key": "size", "value": "10"}
+          ]
+        }
+      }
+    },
+    {
+      "name": "Test Rate Limiting",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"num1\": 1.0,\n  \"num2\": 1.0\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/calculations/calculate",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "calculations", "calculate"]
+        }
+      }
+    },
+    {
+      "name": "Health Check - Actuator",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/actuator/health",
+          "host": ["{{baseUrl}}"],
+          "path": ["actuator", "health"]
+        }
+      }
+    },
+    {
+      "name": "Calculation - Error por parámetros inválidos",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/calculations/calculate",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "calculations", "calculate"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"num1\": null,\n  \"num2\": 5\n}"
+        }
+      }
+    },
+    {
+      "name": "Historial de llamadas - Paginado",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/history?page=0&size=2",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "history"],
+          "query": [
+            { "key": "page", "value": "0" },
+            { "key": "size", "value": "2" }
+          ]
+        }
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080",
+      "type": "string"
+    }
+  ]
+}
